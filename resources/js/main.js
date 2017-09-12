@@ -7,6 +7,7 @@ addButton.addEventListener("click",function (){
 	if (value)
 	{
 		//To do: create a new panel
+		document.getElementById("testObject").innerHTML=value;
 	}
 	//console.log(value);
 }); 
