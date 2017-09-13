@@ -25,32 +25,32 @@ body {
 }
 
 header {
-	width: 100%;
+	width: 98%;
 	height: 100px;
 	position: fixed;
-	padding-left: 20px;
-	padding-top: 20px;
+	padding-left: 10px;
+	padding-top: 15px;
 	bottom: 0px;
 	left: 0px;
 	margin-bottom: 0px;
 	z-index: 5;
 	background:#18ACB3;
-	border-top-right-radius: 25px;
-	border-top-left-radius: 25px;
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
 	box-shadow: 0px -2px 10px 7px rgba(44,62,80,0.25);
 }
 
 header input {
-	width: 80%;
+	width: 90%;
 	height: 85px;
 	background:#80E1E0;
 	float:left;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 42.5px;
-	border-bottom-right-radius: 42.5px;
-	border-bottom-left-radius: 10px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
+	border-bottom-left-radius: 8px;
 	text-indent: 20px;
-	padding: 0 15% 0 0;
+	padding: 0 6% 0 0;
 	border:0px;
 	box-shadow: none;
 	outline: none;
@@ -84,8 +84,8 @@ header button {
 	width: 85px;
 	height: 85px;
 	position: absolute;
-	right: 20px;
-	top:20px;
+	right: 10px;
+	top:15px;
 	z-index: 2;
 	border-radius: 42.5px;
 	background: #FFFFFF;
@@ -100,6 +100,10 @@ header button {
 	cursor: pointer;
 }
 
+header button:hover {
+	background:#EEEEEE;
+}
+
 header button svg path.fill {
 	fill:#18ACB3;
 }
@@ -110,4 +114,58 @@ header button svg {
 	position: absolute;
 	top: 17.5px;
 	left:17.5px;
+}
+
+div#panels {
+	width: 96%;
+	height: 100%;
+	position: absolute;
+	left: 2%;
+	top: 2%;
+	background: #FFFFFF;
+	box-shadow: 0px -10px 10px 3px rgba(44,62,80,0.1);
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+div#lists ul#todo li{
+	height: 35px;
+	width: 95%;
+	background:#FFFFFF;
+	position: relative;
+	float:left;
+	margin-bottom: 20px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	font-size: 22px;
+	padding-top: 30px;
+	padding-left: 5%;
+	box-shadow: 0px -6px 10px -1px rgba(44,62,80,0.2);
+	color:#313131;
+	font-weight: 500;
+}
+
+button.todoTick {
+	background:#FFFFFF;
+	position: absolute;
+	right: 25px;
+	top:20px;
+	border: 0;
+	outline: none;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	-ms-appearance:none;
+	-o-appearance:none;
+	cursor: pointer;
+}
+
+button.todoTick svg{
+	background:#FFFFFF;
+	height:45px;
+	width: 45px;
+}
+
+button.todoTick svg polyline,button.todoTick svg circle {
+	stroke:#18ACB3;
 }

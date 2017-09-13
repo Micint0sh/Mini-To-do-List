@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=0.7">
+	<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=0.6">
 	<title>To-do List</title>
 	<link rel="stylesheet" type="text/css" href="resources/css/style.css">
 	<!--Roboto fonts import-->
@@ -11,7 +11,7 @@
 
 <body>
 	<header>
-		<input type="text" placeholder="Enter an event..." id="item">
+		<input type="text" placeholder="Enter an event..." id="inputBar">
 		<button id="addButton">
 			<!--Corssing SVG in the button-->
 			<svg x="0px" y="0px" width="96px" height="96px" viewBox="0 0 96 96" enable-background="new 0 0 96 96"><g><path class="fill" d="M84,44H52V12c0-2.209-1.791-4-4-4s-4,1.791-4,4v32H12c-2.209,0-4,1.791-4,4s1.791,4,4,4h32v32c0,2.209,1.791,4,4,4
@@ -19,9 +19,17 @@
 		</button>
 	</header>
 
-	<ul>
-		<li id="testObject">Temp Item</li>
-	</ul>
+	<div id="panels">
+	<!--This div creates a empty panel-->
+
+	<!--Container of small lists-->
+	<div id="lists">
+	<!--Tasks to be accomplished-->
+	<ul id="todo"></ul>
+	</div>
+
+
+	</div>
 
 	<!--Javascripts-->
 	<script type="text/javascript" src="resources/js/main.js"></script>
