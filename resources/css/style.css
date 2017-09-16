@@ -145,6 +145,10 @@ div#lists ul#todo li{
 	font-weight: 500;
 }
 
+div#lists ul#todo li p{
+	position: absolute;
+}
+
 button.todoTick {
 	background:#FFFFFF;
 	position: absolute;
@@ -160,6 +164,18 @@ button.todoTick {
 	cursor: pointer;
 }
 
+button.todoTick:hover svg polyline {
+	stroke: #FFFFFF;
+	transition: stroke 0.2s ease-in-out;
+}
+
+button.todoTick:hover svg circle {
+	fill:rgba(24,172,179,0.5);
+	stroke:rgba(24,172,179,0.5);
+	transition: stroke 0.2s ease-in-out,fill 0.2s ease-in-out;
+}
+
+
 button.todoTick svg{
 	background:#FFFFFF;
 	height:45px;
@@ -168,4 +184,35 @@ button.todoTick svg{
 
 button.todoTick svg polyline,button.todoTick svg circle {
 	stroke:#18ACB3;
+}
+
+button.trashCan {
+	background:#FFFFFF;
+	position:absolute;
+	left: 25px;
+	top:  20px;
+	opacity: 0;
+	border: 0;
+	outline: none;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	-ms-appearance:none;
+	-o-appearance:none;
+	cursor: pointer;
+}
+
+button.trashCan svg {
+	background:#FFFFFF;
+	height:45px;
+	width: 45px;
+}
+
+button.trashCan svg path {
+	fill:rgba(0,0,0,0.5);
+}
+
+button.trashCan:hover svg path {
+	fill:#E84F4F;
+	transition: fill 0.2s ease-in-out;
 }
