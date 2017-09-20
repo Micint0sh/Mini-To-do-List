@@ -128,7 +128,7 @@ div#panels {
 	border-top-right-radius: 15px;
 }
 
-div#lists ul#todo li{
+div#lists ul li{
 	height: 35px;
 	width: 95%;
 	background:#FFFFFF;
@@ -145,15 +145,17 @@ div#lists ul#todo li{
 	font-weight: 500;
 }
 
-div#lists ul#todo li p{
+div#lists ul li p{
 	position: absolute;
 }
 
-button.todoTick {
+button.todoTick, button.doneTick{
 	background:#FFFFFF;
 	position: absolute;
 	right: 25px;
 	top:20px;
+	width: 45px;
+	height: 45px;
 	border: 0;
 	outline: none;
 	appearance:none;
@@ -176,7 +178,7 @@ button.todoTick:hover svg circle {
 }
 
 
-button.todoTick svg{
+button.todoTick svg, button.doneTick svg{
 	background:#FFFFFF;
 	height:45px;
 	width: 45px;
@@ -184,6 +186,15 @@ button.todoTick svg{
 
 button.todoTick svg polyline,button.todoTick svg circle {
 	stroke:#18ACB3;
+}
+
+button.doneTick svg polyline {
+	stroke:#FFFFFF;
+}
+
+button.doneTick svg circle {
+	stroke: #18ACB3;
+	fill: #18ACB3;
 }
 
 button.trashCan {
