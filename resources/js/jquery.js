@@ -1,5 +1,6 @@
 $(document).ready(function (){
 	var timer;
+	var timerRMTrashCan;
 	var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 	console.log(width);
 	if(width > 1000)
@@ -14,11 +15,11 @@ $(document).ready(function (){
 	else
 	{
 		//When detected swipe right action
-		toggleDeleteButtonMobile(1000);
+		toggleDeleteButtonMobile(10);
 		// When tapped the trashCan image
-		$("#todo").hammer().bind("tap","li > button.trashCan",removeTrashCan);
+		$("#todo").on("touchstart","li > button.trashCan",removeTrashCan);
 		// When tapped the tick image
-		$("#todo").hammer().bind("tap","li > button.todoTick",toDone);
+		$("#todo").on("touchstart","li > button.todoTick",toDone);
 	}
 
 });
@@ -29,7 +30,8 @@ $(document).ready(function (){
 
 
 //Functions Used
-
+var pixelsMovedRight = 0;
+var prevPosX = 0;
 //Adds a TrashCan button into element
 function addTrashCan(element){
 	var trashItem = document.createElement("button");
@@ -74,45 +76,66 @@ function toggleDeleteButtonDesktop(delay) {
 					trashItem.remove();
 				});
 				//Setting back the text-indent
-				$(this).animate({"text-indent":"0px"},300);					
+				$(this).animate({"text-indent":"0px"},300);
 			}
 		});
 }
 
-function toggleDeleteButtonMobile(delay) {
-	$("#todo").hammer().bind("panright","li",function(){
-	//For mobile operations : using hammer.js
-	if($(this).children("button.trashCan").length == 0 )
-	{
-		var trashItem = addTrashCan(this);
-		jqTheObject = jQuery(this);
-		trashItem = jQuery(trashItem);
-		//Animation
-		jqTheObject.animate({"text-indent":"45px"},100,function (){
-			trashItem.animate({"opacity":"1"},200);
-		});
-		;
-	}
-	}).bind("panleft","li",function(){
-		if($(this).children("button.trashCan").length != 0 )
+function toggleDeleteButtonMobile(distance) {
+	$("#todo").on("touchmove","li",function(event){
+		//For mobile operations :
+		console.log("Move detected\n");
+		var touch = event.targetTouches[0];
+		if( prevPosX ==0 )
 		{
-			var trashItem = $(this).children("button.trashCan");
-			trashItem.animate({"opacity":"0"},200,function(){
-				trashItem.remove();
-			});
-			//Setting back the text-indent
-			$(this).animate({"text-indent":"0px"},200);
-		}	
+			prevPosX = touch.pageX;
+			console.log("prevPosX initiated!\n");
+		}
+		else
+		{
+			pixelsMovedRight += touch.pageX - prevPosX;
+			console.log("pixelsMovedRight: "+pixelsMovedRight);
+			prevPosX = touch.pageX;
+		}
+		if(pixelsMovedRight >= distance)
+		{
+			console.log("Distance exceeded!");
+			if($(this).children("button.trashCan").length == 0 )
+			{
+				console.log("trashCan shown.");
+				var trashItem = addTrashCan(this);
+				trashItem = jQuery(trashItem);
+				//Animation
+				$(this).animate({"text-indent":"45px"},200,function (){
+					trashItem.animate({"opacity":"1"},300);
+				});
+			}
+		}
+		if(-pixelsMovedRight >= distance)
+		{
+			if($(this).children("button.trashCan").length != 0 )
+			{
+				var trashItem = $(this).children("button.trashCan");
+				trashItem.animate({"opacity":"0"},200,function(){
+					trashItem.remove();
+				});
+				//Setting back the text-indent
+				$(this).animate({"text-indent":"0px"},200);
+			}
+		}
+	}).on("touchend","li",function(){
+		prevPosX = 0;
+		pixelsMovedRight = 0;
 	});
 }
 
 function toDone() {
+	var thisObject = this;
 	var jqList = $(this).parent();
-	jqList.slideUp(200);
-	//$(this).removeClass("todoTick").addClass("doneTick");
-	//var li = jqList.html();
-	//$("#done").append(li);
-	//$("#done:last-child").hide();
-	//$("#done:last-child").slideDown(200);
-	//jqList.remove();
+	jqList.slideUp(200,function(){
+		$(thisObject).removeClass("todoTick").addClass("doneTick");
+		var li = jqList.html();
+		$("#done").append("<li>"+li+"</li>");
+		jqList.remove();
+	});
 }

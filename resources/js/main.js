@@ -21,7 +21,7 @@ inputBar.addEventListener("keydown",function (e) {
 		addTodoPanel(value);
 		this.value="";
 	}
-}) 
+})
 
 function addTodoPanel(value){
 	var list = document.getElementById("todo");
@@ -35,5 +35,3 @@ function addTodoPanel(value){
 	item.appendChild(button);
 	list.appendChild(item);
 }
-
-
