@@ -17,13 +17,6 @@ $(document).ready(function (){
 	else
 	{
 		//When detected swipe right action
-<<<<<<< HEAD
-		toggleDeleteButtonMobile(10);
-		// When tapped the trashCan image
-		$("#todo").on("touchstart","li > button.trashCan",removeTrashCan);
-		// When tapped the tick image
-		$("#todo").on("touchstart","li > button.todoTick",toDone);
-=======
 		toggleDeleteButtonMobile(10,"#todo");
 		toggleDeleteButtonMobile(10,"#done");
 		// When tapped the trashCan image
@@ -32,7 +25,6 @@ $(document).ready(function (){
 		// When tapped the tick image
 		$("#todo").on("touchstart","li > button.todoTick",toDone);
 		$("#done").on("touchstart","li > button.doneTick",toToDo);
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 	}
 
 });
@@ -45,14 +37,9 @@ $(document).ready(function (){
 //Functions Used
 var pixelsMovedRight = 0;
 var prevPosX = 0;
-<<<<<<< HEAD
-//Adds a TrashCan button into element
-function addTrashCan(element){
-=======
 
 //Adds a trashCan HTML into element
 function addTrashCanToHTML(element){
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 	var trashItem = document.createElement("button");
 	trashItem.classList.add("trashCan");
 	trashItem.innerHTML = trashSVG;
@@ -106,24 +93,6 @@ function toggleDeleteButtonDesktop(delay,selector) {
 		},delay);
 		}).on("mouseleave","li",function(){
 			clearTimeout(timer);
-<<<<<<< HEAD
-			if( $(this).children("button.trashCan").length != 0 )
-			{
-				var trashItem = $(this).children("button.trashCan");
-				trashItem.animate({"opacity":"0"},100,function(){
-					trashItem.remove();
-				});
-				//Setting back the text-indent
-				$(this).animate({"text-indent":"0px"},300);
-			}
-		});
-}
-
-function toggleDeleteButtonMobile(distance) {
-	$("#todo").on("touchmove","li",function(event){
-		//For mobile operations :
-		console.log("Move detected\n");
-=======
 			removeTrashCan(this);
 		});
 }
@@ -131,58 +100,23 @@ function toggleDeleteButtonMobile(distance) {
 function toggleDeleteButtonMobile(distance,selector) {
 	$(selector).on("touchmove","li",function(event){
 		//For mobile operations :
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 		var touch = event.targetTouches[0];
 		if( prevPosX ==0 )
 		{
 			prevPosX = touch.pageX;
-<<<<<<< HEAD
-			console.log("prevPosX initiated!\n");
-=======
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 		}
 		else
 		{
 			pixelsMovedRight += touch.pageX - prevPosX;
-<<<<<<< HEAD
-			console.log("pixelsMovedRight: "+pixelsMovedRight);
-=======
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 			prevPosX = touch.pageX;
 		}
 		if(pixelsMovedRight >= distance)
 		{
-<<<<<<< HEAD
-			console.log("Distance exceeded!");
-			if($(this).children("button.trashCan").length == 0 )
-			{
-				console.log("trashCan shown.");
-				var trashItem = addTrashCan(this);
-				trashItem = jQuery(trashItem);
-				//Animation
-				$(this).animate({"text-indent":"45px"},200,function (){
-					trashItem.animate({"opacity":"1"},300);
-				});
-			}
-		}
-		if(-pixelsMovedRight >= distance)
-		{
-			if($(this).children("button.trashCan").length != 0 )
-			{
-				var trashItem = $(this).children("button.trashCan");
-				trashItem.animate({"opacity":"0"},200,function(){
-					trashItem.remove();
-				});
-				//Setting back the text-indent
-				$(this).animate({"text-indent":"0px"},200);
-			}
-=======
 			addTrashCan(this);
 		}
 		if(-pixelsMovedRight >= distance)
 		{
 			removeTrashCan(this);
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 		}
 	}).on("touchend","li",function(){
 		prevPosX = 0;
@@ -191,13 +125,10 @@ function toggleDeleteButtonMobile(distance,selector) {
 }
 
 function toDone() {
-<<<<<<< HEAD
-=======
 	if($(this).children("button.trashCan").length != 0)
 	{
 		toggleDeleteButtonDesktop();
 	}
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
 	var thisObject = this;
 	var jqList = $(this).parent();
 	jqList.slideUp(200,function(){
@@ -207,8 +138,6 @@ function toDone() {
 		jqList.remove();
 	});
 }
-<<<<<<< HEAD
-=======
 
 function toToDo() {
 	var thisObject = this;
@@ -220,4 +149,3 @@ function toToDo() {
 		jqList.remove();
 	});
 }
->>>>>>> 85da383134fecab52565e367b26c657485379f1b
